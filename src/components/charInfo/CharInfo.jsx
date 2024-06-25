@@ -18,7 +18,7 @@ const CharInfo = () => {
                </div>
             </div>
          </div>
-         <div className="char__descr">
+         <div className="char__description">
             In Norse mythology, Loki is a god or jötunn (or both). Loki is the
             son of Fárbauti and Laufey, and the brother of Helblindi and
             Býleistr. By the jötunn Angrboða, Loki is the father of Hel, the
