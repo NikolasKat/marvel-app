@@ -1,4 +1,5 @@
 import { Component } from "react";
+
 import Spinner from "../spinner/Spinner";
 import ErrorMassage from "../errorMessage/ErrorMessage";
 import MarvelService from "../../services/MarvelService";
@@ -12,48 +13,61 @@ class CharList extends Component {
       error: false,
    };
 
-   marvelService = new MarvelService();
-
-   componentDidMount() {
-      this.marvelService
-         .getAllCharacters()
-         .then(this.onCharLoaded)
-         .catch(this.onChangeError);
-   }
-
-   onCharLoaded = (charList) => {
-      this.setState({
-         charList,
-         loading: false,
-      });
-   };
-
-   onChangeError = () => {
+   onError = () => {
       this.setState({
          loading: false,
          error: true,
       });
    };
 
+   onCharListLoaded = (charList) => {
+      this.setState({
+         charList,
+         loading: false,
+      });
+   };
+
+   marvelService = new MarvelService();
+
+   componentDidMount() {
+      this.marvelService
+         .getAllCharacters()
+         .then(this.onCharListLoaded)
+         .catch(this.onError);
+   }
+
    renderList(arr) {
-      const result = arr.map((item) => {
+      const items = arr.map((item) => {
+         let imgStyle = { objectFit: "cover" };
+         if (
+            item.thumbnail ===
+            "http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available.jpg"
+         ) {
+            imgStyle = { objectFit: "unset" };
+         }
+
          return (
-            <li className="char__item char__item">
-               <img src={item.thumbnail} alt="abyss" />
+            <li
+               className="char__item"
+               key={item.id}
+               onClick={() => this.props.onCharSelected(item.id)}
+            >
+               <img src={item.thumbnail} alt={item.name} style={imgStyle} />
                <div className="char__name">{item.name}</div>
             </li>
          );
       });
-      return <ul className="char__grid">{result}</ul>;
+
+      return <ul className="char__grid">{items}</ul>;
    }
 
    render() {
       const { charList, loading, error } = this.state;
       const item = this.renderList(charList);
 
+      const contentComp = !(loading || error) ? item : null;
       const errorComp = error ? <ErrorMassage /> : null;
       const loadingComp = loading ? <Spinner /> : null;
-      const contentComp = !(loading || error) ? item : null;
 
       return (
          <div className="char__list">
