@@ -1,3 +1,5 @@
+import { PersonFillIcon } from "@primer/octicons-react";
+
 import "./appHeader.scss";
 
 const AppHeader = () => {
@@ -12,6 +14,7 @@ const AppHeader = () => {
             <ul>
                <li>
                   <a href="#">Characters</a>
+                  <PersonFillIcon size={16} />
                </li>
                /
                <li>

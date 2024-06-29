@@ -1,4 +1,5 @@
 import { Component } from "react";
+import { PersonAddIcon } from "@primer/octicons-react";
 
 import Spinner from "../spinner/Spinner";
 import ErrorMassage from "../errorMessage/ErrorMessage";
@@ -75,7 +76,9 @@ class CharList extends Component {
             {loadingComp}
             {contentComp}
             <button className="button button__main button__long">
-               <div className="inner">load more</div>
+               <div className="inner">
+                  load more <PersonAddIcon size={24} fill="#ffffff" />
+               </div>
             </button>
          </div>
       );

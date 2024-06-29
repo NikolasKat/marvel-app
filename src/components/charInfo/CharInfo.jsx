@@ -82,12 +82,15 @@ const View = ({ charInfo }) => {
    const { name, description, thumbnail, homepage, wiki, comics } = charInfo;
 
    const renderComicsList = (list) => {
+      // eslint-disable-next-line array-callback-return
       const items = list.map((item, index) => {
-         return (
-            <li key={index} className="char__comics-item">
-               {item.name}
-            </li>
-         );
+         if (index < 10) {
+            return (
+               <li key={index} className="char__comics-item">
+                  {item.name}
+               </li>
+            );
+         }
       });
 
       return <ul className="char__comics-list">{items}</ul>;
