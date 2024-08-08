@@ -6,18 +6,15 @@ class ErrorBoundary extends Component {
       error: false,
    };
 
-   componentDidCatch(error, info) {
-      console.log(error, info);
-      this.setState({ error: true });
+   componentDidCatch(error, errorInfo) {
+      this.setState({
+         error: true,
+      });
    }
 
    render() {
       if (this.state.error) {
-         return (
-            <h2 style={{ textAlign: "center" }}>
-               Something went wrong <br /> <ErrorMassage />
-            </h2>
-         );
+         return <ErrorMassage />;
       }
 
       return this.props.children;
