@@ -5,7 +5,7 @@ import Spinner from "../spinner/Spinner";
 
 import "./comicsList.scss";
 
-const ComicsList = () => {
+const ComicsList = (props) => {
    const [comicsList, setComicsList] = useState([]);
    const [newComicsLoading, setNewComicsLoading] = useState(false);
    const [offset, setOffset] = useState(0);
@@ -38,16 +38,20 @@ const ComicsList = () => {
    function renderComicsList(arr) {
       const items = arr.map((item, i) => {
          return (
-            <li className="comics__item" key={i}>
-               <a href="#">
-                  <img
-                     src={item.thumbnail}
-                     alt="ultimate war"
-                     className="comics__item-img"
-                  />
-                  <div className="comics__item-name">{item.title}</div>
-                  <div className="comics__item-price">{item.price}</div>
-               </a>
+            <li
+               className="comics__item"
+               key={i}
+               onClick={() => {
+                  props.onComicsSelected(item.id);
+               }}
+            >
+               <img
+                  src={item.thumbnail}
+                  alt="ultimate war"
+                  className="comics__item-img"
+               />
+               <div className="comics__item-name">{item.title}</div>
+               <div className="comics__item-price">{item.price}</div>
             </li>
          );
       });
