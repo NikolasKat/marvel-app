@@ -1,9 +1,10 @@
+import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
-import Skeleton from "../skeleton/Skeleton";
+import Skeleton from "../ui/skeleton/Skeleton";
 import ErrorMassage from "../errorMessage/ErrorMessage";
-import Spinner from "../spinner/Spinner";
+import Spinner from "../ui/spinner/Spinner";
 import AppBanner from "../appBanner/AppBanner";
 
 import useMarvelService from "../../services/MarvelService";
@@ -66,9 +67,9 @@ const View = ({ comicsInfo }) => {
                <p className="single-comic__description"></p>
                <div className="single-comic__price">{comicsInfo.price}</div>
             </div>
-            <a href="#" className="single-comic__back">
+            <Link to="/" className="single-comic__back">
                Back to all
-            </a>
+            </Link>
          </div>
       </>
    );

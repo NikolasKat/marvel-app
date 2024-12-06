@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 
-import Spinner from "../spinner/Spinner";
+import Spinner from "../ui/spinner/Spinner";
 import ErrorMassage from "../errorMessage/ErrorMessage";
-import Skeleton from "../skeleton/Skeleton";
+import Skeleton from "../ui/skeleton/Skeleton";
 import useMarvelService from "../../services/MarvelService";
 
 import "./charInfo.scss";
